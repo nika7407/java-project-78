@@ -9,7 +9,4 @@ public final class AppTest {
     public void testAlwaysTrue() {
         Assertions.assertTrue(true);
     }
-    
-
-
 }
