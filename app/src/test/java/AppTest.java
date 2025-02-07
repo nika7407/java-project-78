@@ -27,6 +27,7 @@ public final class AppTest {
         assertTrue(test1.isValid(""));
         assertFalse(test1.required().isValid(""));
         assertFalse(test.isValid("IHATEJAVA"));
+        assertTrue(test1.contains("IHATE").isValid("IHATEJAVA"));
 
     }
 
