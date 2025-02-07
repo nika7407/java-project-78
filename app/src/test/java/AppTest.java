@@ -1,5 +1,5 @@
 
-import hexlet.code.schemas.Validator;
+import hexlet.code.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -28,6 +28,22 @@ public final class AppTest {
         assertFalse(test.isValid("IHATEJAVA"));
         assertTrue(test1.contains("HATE").isValid("IHATEJAVA"));
 
+    }
+
+    @Test
+    public void testInteger(){
+        Validator v = new Validator();
+        var test = v.number();
+
+
+
+        assertTrue(test.isValid(null));
+        assertFalse(test.required().isValid(null));
+        assertTrue(test.range(5,10).isValid(7));
+        assertFalse(test.range(5,10).isValid(42));
+        assertTrue(test.positive().isValid(10));
+        assertFalse(test.positive().isValid(-42));
+        assertTrue(test.positive().isValid(null));
     }
 
 
