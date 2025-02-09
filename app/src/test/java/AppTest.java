@@ -38,7 +38,7 @@ public final class AppTest {
         var test = v.number();
 
 
-
+        assertFalse(test.required().isValid(null));
         assertTrue(test.isValid(null));
         assertTrue(test.range(5, 10).isValid(7));
         assertFalse(test.range(5, 10).isValid(42));

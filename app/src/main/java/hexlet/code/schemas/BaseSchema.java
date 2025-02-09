@@ -16,7 +16,6 @@ public class BaseSchema<T>  {
         Set<String> keys = parameters.keySet();
         for (String key : keys) {
             Predicate currentTest = parameters.get(key);
-
             if (!currentTest.test(objectToTest)) {
                 return false;
             }
