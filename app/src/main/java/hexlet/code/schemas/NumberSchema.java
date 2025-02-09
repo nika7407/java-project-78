@@ -1,11 +1,10 @@
 package hexlet.code.schemas;
 
-import java.util.Objects;
 import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema<Integer> {
 
-    public NumberSchema required(){
+    public NumberSchema required() {
         Predicate<Integer> required = num -> num != null;
         add("required", required);
         return this;
@@ -19,7 +18,6 @@ public class NumberSchema extends BaseSchema<Integer> {
     public NumberSchema positive() {
         Predicate<Integer> positive = num -> {
             if (num == null) {
-                System.out.println("Positive check: num is null");
                 return true;  // `null` is valid
             }
             return num > 0;

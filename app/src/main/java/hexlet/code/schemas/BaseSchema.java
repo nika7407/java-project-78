@@ -12,12 +12,12 @@ public class BaseSchema<T>  {
         parameters.put(parameterName, parameter);
     }
 
-    public boolean isValid(T ObjectToTest) {
+    public boolean isValid(T objectToTest) {
         Set<String> keys = parameters.keySet();
         for (String key : keys) {
             Predicate currentTest = parameters.get(key);
 
-            if (!currentTest.test(ObjectToTest)) {
+            if (!currentTest.test(objectToTest)) {
                 return false;
             }
         }

@@ -31,19 +31,19 @@ public final class AppTest {
     }
 
     @Test
-    public void testInteger(){
+    public void testInteger() {
         Validator v = new Validator();
         var test = v.number();
 
 
 
         assertTrue(test.isValid(null));
-        assertFalse(test.required().isValid(null));
-        assertTrue(test.range(5,10).isValid(7));
-        assertFalse(test.range(5,10).isValid(42));
+        assertTrue(test.range(5, 10).isValid(7));
+        assertFalse(test.range(5, 10).isValid(42));
         assertTrue(test.positive().isValid(10));
         assertFalse(test.positive().isValid(-42));
         assertTrue(test.positive().isValid(null));
+        assertFalse(test.required().isValid(null));
     }
 
 
