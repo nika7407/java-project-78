@@ -5,10 +5,6 @@ import java.util.HashMap;
 import java.util.function.Predicate;
 
 public class MapSchema extends BaseSchema<Map> {
-    protected Map<String, BaseSchema<String>> schemas = new HashMap<>();
-
-
-
     public MapSchema required() {
         Predicate<Map> required = map -> map != null;
         add("required", required);

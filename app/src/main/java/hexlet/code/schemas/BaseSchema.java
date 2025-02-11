@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 public abstract class BaseSchema<T>  {
     protected Map<String, Predicate<T>> parameters = new HashMap<>();
-
+    protected Map<String, BaseSchema<String>> schemas = new HashMap<>();
     public void add(String parameterName, Predicate<T> parameter) {
         parameters.put(parameterName, parameter);
     }
