@@ -58,5 +58,21 @@ Validator supports:
 
 `v.map().sizeof();`
 
+## Map Content 
+> v.map()
+ 
+ * **shape** adds `Map<String, BaseSchema<String>>` type into validator that checks parameters 
+inside map 
+
+> Map<String, BaseSchema<String>> schemas = new HashMap<>();
+>
+> schemas.put("firstName", v.string().required());
+>
+> schemas.put("lastName", v.string().required().minLength(2));
+>
+> schema.shape(schemas);
+
+otherwise everything works the same ;-)
+
 
  
