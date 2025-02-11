@@ -5,36 +5,36 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public abstract class BaseSchema<T>  {
+public abstract class BaseSchema<T> {
     protected Map<String, Predicate<T>> parameters = new HashMap<>();
     protected Map<String, BaseSchema<String>> schemas = new HashMap<>();
 
     /**
-     * Adds a validators into the parameters list
+     * Adds a validator into the parameters list.
      *
-     *
+     * @param parameterName The name of the validation rule.
+     * @param parameter     The predicate that defines the validation rule.
      */
     public void add(String parameterName, Predicate<T> parameter) {
         parameters.put(parameterName, parameter);
     }
 
-
     /**
+     * Checks the given object against all validation rules.
+     * Returns false if any rule fails.
      *
-     * checks T object with every validator in the parameters returns false
-     * when one of them is wrong
-     *
+     * @param objectToTest The object to be validated.
+     * @return {@code true} if the object passes all validation rules, {@code false} otherwise.
      */
     public boolean isValid(T objectToTest) {
         Set<String> keys = parameters.keySet();
         for (String key : keys) {
-            Predicate currentTest = parameters.get(key);
+            Predicate<T> currentTest = parameters.get(key);
             if (!currentTest.test(objectToTest)) {
                 return false;
             }
         }
         return true;
     }
-
-
 }
+
