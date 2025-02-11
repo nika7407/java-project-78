@@ -57,8 +57,9 @@ public final class AppTest {
         data.put("key1", "value1");
 
         assertTrue(schema.isValid(null));
+        assertTrue(schema.isValid(new HashMap<>()));
         assertFalse(schema.required().isValid(null));
-        assertTrue(schema.sizeof(2).isValid(data));
+        assertFalse(schema.sizeof(2).isValid(data));
     }
 
 
@@ -82,6 +83,12 @@ public final class AppTest {
         human2.put("firstName", "John");
         human2.put("lastName", null);
         assertFalse(schema.isValid(human2));
+
+
+        Map<String, String> human3 = new HashMap<>();
+        human3.put("firstName", "Anna");
+        human3.put("lastName", "B");
+        assertFalse(schema.isValid(human3));
     }
 
 

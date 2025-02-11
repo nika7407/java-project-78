@@ -12,7 +12,7 @@ public class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema sizeof(int maxSize) {
-        Predicate<Map> sizeOf = map -> map != null && map.size() <= maxSize;
+        Predicate<Map> sizeOf = map -> map != null && map.size() == maxSize;
         add("sizeof", sizeOf);
         return this;
     }
