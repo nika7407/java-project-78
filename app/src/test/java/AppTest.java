@@ -1,9 +1,11 @@
 
 import hexlet.code.Validator;
+import hexlet.code.schemas.BaseSchema;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +25,7 @@ public final class AppTest {
                 .minLength(5).contains("hex");
 
         var test1 = v.string();
-
+        assertTrue(test1.isValid(null));
         assertTrue(test.isValid("hexlet"));
         assertTrue(test1.isValid(""));
         assertFalse(test1.required().isValid(""));
@@ -59,6 +61,28 @@ public final class AppTest {
         assertTrue(schema.sizeof(2).isValid(data));
     }
 
+
+    @Test
+    public void testMapShape() {
+        var v = new Validator();
+        var schema = v.map();
+        Map<String, BaseSchema<String>> schemas = new HashMap<>();
+        schemas.put("firstName", v.string().required());
+        schemas.put("lastName", v.string().required().minLength(2));
+        schema.shape(schemas);
+
+
+        Map<String, String> human1 = new HashMap<>();
+        human1.put("firstName", "John");
+        human1.put("lastName", "Smith");
+        assertTrue(schema.isValid(human1));
+
+
+        Map<String, String> human2 = new HashMap<>();
+        human2.put("firstName", "John");
+        human2.put("lastName", null);
+        assertFalse(schema.isValid(human2));
+    }
 
 
 }

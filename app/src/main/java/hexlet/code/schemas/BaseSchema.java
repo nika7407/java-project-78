@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
-public class BaseSchema<T>  {
+public abstract class BaseSchema<T>  {
     protected Map<String, Predicate<T>> parameters = new HashMap<>();
 
     public void add(String parameterName, Predicate<T> parameter) {
@@ -22,5 +22,6 @@ public class BaseSchema<T>  {
         }
         return true;
     }
+
 
 }
