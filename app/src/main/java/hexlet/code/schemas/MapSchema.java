@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.function.Predicate;
 
-public class MapSchema extends BaseSchema<Map> {
+public final class MapSchema extends BaseSchema<Map> {
     public MapSchema required() {
         Predicate<Map> required = map -> map != null;
         add("required", required);
