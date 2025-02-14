@@ -10,7 +10,7 @@ public final class MapSchema extends BaseSchema<Map> {
         add("required", required);
         return this;
     }
-
+  // meow
     public MapSchema sizeof(int maxSize) {
         Predicate<Map> sizeOf = map -> map != null && map.size() == maxSize;
         add("sizeof", sizeOf);
