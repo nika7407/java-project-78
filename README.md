@@ -5,7 +5,9 @@
 
 # Validator 
 you can use validator class to create parametrized checks 
-and then use them however you want. :)
+
+and then use them however you want.  ∩｡• ᵕ •｡∩ ♡
+
 Use Validator class to access all to access all different methods.
 
 ` Validator v = new Validator();`
