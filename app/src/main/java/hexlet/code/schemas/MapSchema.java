@@ -1,7 +1,6 @@
 package hexlet.code.schemas;
 
 import java.util.Map;
-import java.util.HashMap;
 import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map> {
@@ -18,29 +17,14 @@ public final class MapSchema extends BaseSchema<Map> {
     }
 
     public void shape(Map<String, BaseSchema<String>> schemas) {
-        this.schemas = new HashMap<>(schemas);
+        Predicate<Map> mapContentTest = map -> {
+            return schemas.entrySet().stream().allMatch(currentMap -> {
+                String currentkey = currentMap.getKey();
+                BaseSchema<String> currentSchema = currentMap.getValue();
+                return currentSchema.isValid((String) map.get(currentkey));
+            });
+        };
+        add("mapContentTest", mapContentTest);
     }
 
-    @Override
-    public boolean isValid(Map mapToTest) {
-
-        if (!super.isValid(mapToTest)) {
-            return false;
-        }
-
-        if (mapToTest == null) {
-            return true;
-        }
-        for (Map.Entry<String, BaseSchema<String>> entry : schemas.entrySet()) {
-            String key = entry.getKey();
-            BaseSchema<String> schema = entry.getValue();
-            String value = (String) mapToTest.get(key);
-
-            if (!schema.isValid(value)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
 }
